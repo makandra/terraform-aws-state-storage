@@ -1,0 +1,5 @@
+sections:
+  hide:
+    - providers
+    - requirements
+    - modules
