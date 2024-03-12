@@ -1,0 +1,7 @@
+quiet: true
+compact: true
+skip-check:
+  - CKV_AWS_18 # Access logging is not implemented yet
+  - CKV_AWS_28 # Point-in-time-recovery for the state lock table is not necessary
+  - CKV_AWS_144 # No reason for cross-region replication since it is now possible to make backups for s3 buckets
+  - CKV2_AWS_62 # Event notifications for the state bucket are not needed.
