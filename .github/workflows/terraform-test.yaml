@@ -1,0 +1,22 @@
+name: terraform-test
+on:
+  push:
+    branches: [ "main"]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  terraform_test:
+    runs-on: ubuntu-latest
+    container: hashicorp/terraform:1.7.5
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - run: terraform init
+      - run: terraform test
