@@ -34,6 +34,13 @@ run "encryption_config_attachment" {
   }
 }
 
+run "bucket_policy_attachment" {
+  assert {
+    condition     = aws_s3_bucket_policy.terraform_state_policy.bucket == aws_s3_bucket.terraform_state.id
+    error_message = "Bucket policy is not attached to bucket"
+  }
+}
+
 run "bucket_public" {
   command = plan
   assert {
