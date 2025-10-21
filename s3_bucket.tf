@@ -34,6 +34,7 @@ resource "aws_s3_bucket_versioning" "terraform_state" {
 
 resource "aws_s3_bucket_lifecycle_configuration" "terraform_state" {
   bucket = aws_s3_bucket.terraform_state.bucket
+  transition_default_minimum_object_size = "varies_by_storage_class"
   rule {
     id     = "delete_noncurrent_versions_after_900_days"
     status = "Enabled"
@@ -47,7 +48,6 @@ resource "aws_s3_bucket_lifecycle_configuration" "terraform_state" {
     }
 
     expiration {
-      days                         = 0
       expired_object_delete_marker = true
     }
   }
